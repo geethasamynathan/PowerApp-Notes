@@ -225,7 +225,7 @@ Item = varSelectedItem
 This ensures the selection is retained.
 
 4. Ensure Gallery Refreshes After Submission
-If you have a Submit Button, ensure it resets the form and gallery:
+If you have a (Add orsavechanges)Submit Button, ensure it resets the form and gallery:
 
 ```powerapps
 
