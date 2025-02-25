@@ -181,3 +181,67 @@ update the Form Behaviour
 
 Item
 If(isNewRecord, Defaults(Table1), Gallery2.Selected)
+
+
+IF Face any issue data is not loaded after click addnew Button change the below sttings
+## Steps to Fix:
+### 1. Check the "Add New" Button Code
+Modify your Add New button code to ensure it correctly switches the form to New Mode without affecting gallery selection.
+
+✅ Correct Code for Add New:
+```powerapps
+
+NewForm(EditForm1);
+Reset(Gallery2);  // Reset to prevent any previous selection issues
+NewForm(EditForm1): Switches form to New Mode.
+Reset(Gallery2): Ensures the gallery refreshes correctly.
+```
+### 2. Check Form's Item Property
+Ensure the Form’s Item property correctly binds to the selected gallery item:
+
+```powerapps
+
+Item = If(EditForm1.Mode = FormMode.New, Defaults(Table1), Gallery2.Selected)
+```
+When in New Mode, it loads an empty record (Defaults(Table1)).
+
+Otherwise, it binds to Gallery2.Selected.
+3. Ensure Gallery Selection Is Not Lost
+Modify the Gallery2 OnSelect property to explicitly set a selected record:
+
+```powerapps
+
+Set(varSelectedItem, ThisItem);
+EditForm(EditForm1);
+```
+This stores the selected record in varSelectedItem.
+Use varSelectedItem in the form's Item property.
+🔹 Modify Form Item Property:
+
+```powerapps
+
+Item = varSelectedItem
+```
+This ensures the selection is retained.
+
+4. Ensure Gallery Refreshes After Submission
+If you have a Submit Button, ensure it resets the form and gallery:
+
+```powerapps
+
+SubmitForm(EditForm1);
+Reset(Gallery2);
+Set(varSelectedItem, Blank());  // Clear selection after adding a new record
+```
+This prevents old selections from interfering.
+
+## If Delete button not visible 
+
+Change the visible =true
+
+OnSelect
+```powerapps
+Remove(Table1, Gallery2.Selected);
+ResetForm(Form1);
+UpdateContext({isNewRecord: true});
+```
