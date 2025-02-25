@@ -172,9 +172,9 @@ ResetForm(Form1);
 UpdateContext({isNewRecord: true});
 
 **Explanation:**
-Remove(Table1, Gallery2.Selected): Deletes the selected record from Excel (Table1).
-ResetForm(Form1): Clears the form after deletion.
-UpdateContext({isNewRecord: true}): Sets the form back to "New Record" mode.
+Remove(Table1, Gallery2.Selected);
+ResetForm(Form1);
+UpdateContext({isNewRecord: true})
 
 
 update the Form Behaviour
@@ -192,9 +192,9 @@ Modify your Add New button code to ensure it correctly switches the form to New 
 ```powerapps
 
 NewForm(EditForm1);
-Reset(Gallery2);  // Reset to prevent any previous selection issues
-NewForm(EditForm1): Switches form to New Mode.
-Reset(Gallery2): Ensures the gallery refreshes correctly.
+Reset(Gallery2);  
+NewForm(EditForm1)
+Reset(Gallery2)
 ```
 ### 2. Check Form's Item Property
 Ensure the Form’s Item property correctly binds to the selected gallery item:
