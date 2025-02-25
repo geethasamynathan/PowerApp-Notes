@@ -137,7 +137,7 @@ Next we will Add New Product
 
 Addnew button on the top form
 
-**onselect **
+** onselect **
 
 NewForm(Form1);UpdateContext({isNewRecord:true})
 
